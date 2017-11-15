@@ -3,8 +3,10 @@ import java.util.HashSet;
 public class Politiker {
 
     private HashSet<State> states = new HashSet<>();
+    private String name;
 
-    public Politiker() {
+    public Politiker(String name) {
+        this.name = name;
         states.add(Loyal.getInstance());
         states.add(Ergeben.getInstance());
     }
@@ -69,4 +71,7 @@ public class Politiker {
         return states;
     }
 
+    public String getName() {
+        return name;
+    }
 }

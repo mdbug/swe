@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public class Aufsichtsrat extends AbstractState {
     private static Aufsichtsrat INSTANCE = new Aufsichtsrat();
 

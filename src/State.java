@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public interface State {
     void parteilob(final Politiker politiker);
     void parteitadel(final Politiker politiker);

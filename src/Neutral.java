@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public class Neutral extends PolitischAktiv {
     private static Neutral INSTANCE = new Neutral();
 

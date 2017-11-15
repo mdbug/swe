@@ -1,10 +1,3 @@
-package blatt05;
-
-import blatt05.states.EndZustand;
-import blatt05.states.Ergeben;
-import blatt05.states.Loyal;
-import blatt05.states.State;
-
 import java.util.HashSet;
 
 public class Politiker {

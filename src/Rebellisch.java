@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public class Rebellisch extends PolitischAktiv {
     private static Rebellisch INSTANCE = new Rebellisch();
 

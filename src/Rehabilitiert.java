@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public class Rehabilitiert extends Protegiert {
     private static Rehabilitiert INSTANCE = new Rehabilitiert();
 

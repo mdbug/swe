@@ -1,5 +1,3 @@
-package blatt05;
-
 import java.util.Scanner;
 
 public class Steuerung {
@@ -34,9 +32,7 @@ public class Steuerung {
             }
             System.out.println("Fiktiver Politiker befindet sich in"
                     + " (Teil)-Zustaenden:");
-            //hier muss noch eine sinnvolle Ausgabe implementiert werden
             System.out.println(polli.getStates());
-
         }
     }
 

@@ -1,7 +1,3 @@
-package blatt05.states;
-
-import blatt05.Politiker;
-
 public class Hoerig extends Protegiert {
     private static Hoerig INSTANCE = new Hoerig();
 

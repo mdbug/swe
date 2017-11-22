@@ -1,5 +1,3 @@
-import Zahlart.Zahlart;
-
 public class Kunde {
     private String letzeNachricht;
     private Zahlart zahlart;

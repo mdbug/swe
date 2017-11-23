@@ -45,11 +45,9 @@ public class Main {
 
 	private String textEingeben(String aufforderung){
 		Scanner sc= new Scanner(System.in);
-		sc.useDelimiter("\n");
 		System.out.print(aufforderung);
-		String text=sc.next();
-		// letztes Zeichen \n loeschen
-		return text.substring(0,text.length()-1);
+		String text=sc.nextLine();
+        return text;
 	}
 	
 	private int nummerwaehlen(int size) {
@@ -68,32 +66,68 @@ public class Main {
 	}
 	
 	private void nachrichtVeraendern() {
+        if (kanaele.isEmpty()) {
+            System.out.println("Es existiert noch kein Nachrichtenkanal.");
+            return;
+        }
 		Nachrichtenkanal nk=nachrichtenkanalWaehlen();
-		/* TODO */
+        String nachricht = textEingeben("Nachricht eingeben: ");
+        nk.setNachricht(nachricht);
 	}
 
 	private void nachrichtenkanalstatistik() {
-		/* TODO */
+        if (kanaele.isEmpty()) {
+            System.out.println("Es existiert noch kein Nachrichtenkanal.");
+            return;
+        }
+        Nachrichtenkanal nk=nachrichtenkanalWaehlen();
+        System.out.println(nk.getStatistik());
 	}
 
 	private void neuesAbonnement() {
-		// fehlt Pruefung auf leere Listen
+        if (kanaele.isEmpty()) {
+            System.out.println("Es existiert noch kein Nachrichtenkanal.");
+            return;
+        }
+        if (kunden.isEmpty()) {
+            System.out.println("Es existiert noch kein Kunde.");
+            return;
+        }
 		int i=1;
 		System.out.println("Welcher Kunde? ");
 		for(Kunde k:kunden)
 			System.out.println(" ("+(i++)+") "+k);
 		Kunde kunde=kunden.get(nummerwaehlen(kunden.size())-1);
 		Nachrichtenkanal nk=nachrichtenkanalWaehlen();
-		/* TODO */
+        nk.abboniere(kunde);
 	}
 
 	private void neuerNachrichtenkanal() {
-		/* TODO */
-		kanaele.add(new Nachrichtenkanal());
+        String name = textEingeben("Name: ");
+		kanaele.add(new Nachrichtenkanal(name));
 	}
 
 	private void neuerKunde() {
-		/* TODO */
+		String name = textEingeben("Name: ");
+        System.out.println("Zahlart wählen: ");
+        System.out.println(" (1) Festbetrag pro Nachricht");
+        System.out.println(" (2) Abbrechnung nach der dritten Nachricht");
+        int art = nummerwaehlen(2);
+        Zahlart zahlart;
+        switch(art) {
+            case 1:
+                zahlart = new FestpreisProNachricht();
+                break;
+            case 2:
+                zahlart = new ZahlungNachDritterNachricht();
+                break;
+            default:
+                zahlart = new FestpreisProNachricht();
+                break;
+        }
+        Kunde kunde = new Kunde(name);
+        kunde.setZahlart(zahlart);
+        kunden.add(kunde);
 	}
 
 	public static void main(String[] args) {

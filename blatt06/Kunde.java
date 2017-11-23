@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Kunde {
     private ArrayList<String> nachrichten = new ArrayList<>();
-    private Zahlart zahlart = null;
     private String name;
 
     public Kunde(String name) {
@@ -10,21 +9,11 @@ public class Kunde {
     }
 
     public void erhalteNachricht(String nachricht) {
-        if (zahlart != null) {
-            nachrichten.add(nachricht);
-        }
+        nachrichten.add(nachricht);
     }
 
-    public int abrechnung() {
-        if (zahlart == null) {
-            return 0;
-        }
-
-        return zahlart.getBetrag(nachrichten.size());
-    }
-
-    void setZahlart(Zahlart zahlart) {
-        this.zahlart = zahlart;
+    public int abrechnung(Zahlart zahlart, int n) {
+        return zahlart.getBetrag(n);
     }
 
     public String toString() {

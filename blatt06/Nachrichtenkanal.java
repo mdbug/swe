@@ -1,7 +1,7 @@
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Nachrichtenkanal {
-    private HashSet<Kunde> abonnenten = new HashSet<>();
+    private HashMap<Kunde, Abo> abos = new HashMap<>();
     private String nachricht;
     private int nachrichten = 0;
     private int einnahmen = 0;
@@ -11,28 +11,31 @@ public class Nachrichtenkanal {
         this.name = name;
     }
 
-    void abboniere(Kunde kunde) {
-        abonnenten.add(kunde);
+    void abboniere(Kunde kunde, Zahlart zahlart) {
+        abos.put(kunde, new Abo(kunde, zahlart));
     }
 
     void beendeAbo(Kunde kunde) {
-        abonnenten.remove(kunde);
+        abos.remove(kunde);
     }
 
     public void setNachricht(String nachricht) {
         this.nachricht = nachricht;
         nachrichten++;
-        for (Kunde kunde : abonnenten)
+        for (Abo abo : abos.values())
         {
+            Kunde kunde = abo.getKunde();
+            Zahlart zahlart = abo.getZahlart();
             kunde.erhalteNachricht(nachricht);
-            einnahmen += kunde.abrechnung();
+            abo.erhoeheAusgelieferteNachrichten();
+            einnahmen += kunde.abrechnung(zahlart, abo.getAusgelieferteNachrichten());
         }
     }
 
     public String getStatistik() {
         StringBuilder statistik = new StringBuilder();
         statistik.append("Nachrichten: ").append(nachrichten).append("\n");
-        statistik.append("Abonnenten: ").append(abonnenten.size()).append("\n");
+        statistik.append("Abonnenten: ").append(abos.size()).append("\n");
         statistik.append("Einnahmen: ").append(einnahmen).append("\n");
         return statistik.toString();
     }

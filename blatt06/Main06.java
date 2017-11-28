@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Main06 {
 	private List<Kunde> kunden = new ArrayList<Kunde>();
 	private List<Nachrichtenkanal> kanaele= 
 				new ArrayList<Nachrichtenkanal>();
@@ -124,7 +124,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		new Main().dialog();
+		new Main06().dialog();
 	}
 
 }

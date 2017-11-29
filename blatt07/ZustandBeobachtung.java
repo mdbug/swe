@@ -34,4 +34,8 @@ public class ZustandBeobachtung implements Zustand {
 		kb.setZustand(new ZustandVorkasse(kb));		
 	}
 
+	@Override
+	public void einzugErfolgreich() {
+		kb.setZustand(new ZustandZuverlaessig(kb));
+	}
 }

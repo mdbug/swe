@@ -20,6 +20,10 @@ public class Kundenbewertung {
 	public void nichtGezahlt(){
 		zustand.nichtBezahlt();
 }
+
+	public void einzugErfolgreich() {
+		zustand.einzugErfolgreich();
+	}
 	
 	public int kredit(){
 		return zustand.kredit();

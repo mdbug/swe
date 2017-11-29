@@ -4,5 +4,6 @@ public interface Zustand{
 
 	public void puenktlich();
 	public void unpuenktlich(); 
-	public void nichtBezahlt(); 
+	public void nichtBezahlt();
+	public void einzugErfolgreich();
 }

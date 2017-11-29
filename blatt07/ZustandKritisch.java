@@ -28,6 +28,10 @@ public class ZustandKritisch implements Zustand {
 	@Override
 	public void nichtBezahlt() {
 		kb.setZustand(new ZustandVorkasse(kb));
-	} 
+	}
 
+    @Override
+    public void einzugErfolgreich() {
+        kb.setZustand(new ZustandBeobachtung(kb));
+    }
 }

@@ -28,4 +28,8 @@ public class ZustandZuverlaessig implements Zustand {
 		kb.setZustand(new ZustandVorkasse(kb));
 	}
 
+	@Override
+	public void einzugErfolgreich() {
+	}
+
 }

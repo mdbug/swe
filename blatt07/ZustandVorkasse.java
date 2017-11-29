@@ -25,4 +25,9 @@ public class ZustandVorkasse implements Zustand {
 	@Override
 	public void nichtBezahlt() {
 	}
+
+	@Override
+	public void einzugErfolgreich() {
+		kb.setZustand(new ZustandKritisch(kb));
+	}
 }

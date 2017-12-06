@@ -146,4 +146,22 @@ public class KontrolleTest {
             fail();
         }
     }
+
+    @Test
+    public void zugriffErlaubt16() {
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 101));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+    }
+
+    @Test
+    public void zugriffErlaubt17() {
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 101));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+    }
 }

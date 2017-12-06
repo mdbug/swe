@@ -1,4 +1,5 @@
-import aufgabe12.*;
+package aufgabe12;
+
 import org.junit.Before;
 import org.junit.Test;
 

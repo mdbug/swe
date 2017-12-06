@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main7 {
 
 	/* Dieses Programm erlaubt den interaktiven Test eines
 	 * Kundenbewertungsobjekts

@@ -106,7 +106,7 @@ public class KontrolleTest {
     @Test
     public void zugriffErlaubt11() {
         try {
-            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 60));
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 60));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }

@@ -14,155 +14,165 @@ public class KontrolleTest {
     }
 
     @Test
-    public void zugriffErlaubt1() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Einfach(), new Frei(), 39));
-            fail();
-        } catch (IllegaleAnfrage illegaleAnfrage) {
+    public void zugriffErlaubtEinfach() {
+        for (int menge : new int[]{39, 40, 59, 60, 79, 80, 100, 101}) {
+            for (Daten daten : new Daten[]{new Frei(), new Vertraulich(), new Geheim()}) {
+                try {
+                    assertFalse(kontrolle.zugriffErlaubt(new Einfach(), daten, menge));
+                    fail();
+                } catch (IllegaleAnfrage ignored) {
+                }
+            }
         }
     }
 
     @Test
-    public void zugriffErlaubt2() {
+    public void zugriffErlaubtGehobenFrei() {
         try {
             assertTrue(kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 59));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }
-    }
 
-    @Test
-    public void zugriffErlaubt3() {
         try {
             assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 60));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 100));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 101);
+            fail();
+        } catch (IllegaleAnfrage ignored) {
+        }
     }
 
     @Test
-    public void zugriffErlaubt4() {
+    public void zugriffErlaubtGehobenVertaulich() {
         try {
             assertTrue(kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 39));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }
-    }
 
-    @Test
-    public void zugriffErlaubt5() {
         try {
             assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 40));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }
-    }
 
-    @Test
-    public void zugriffErlaubt6() {
         try {
-            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 79));
+            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 100));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
+        }
+
+        try {
+            kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 101);
+            fail();
+        } catch (IllegaleAnfrage ignored) {
         }
     }
 
     @Test
-    public void zugriffErlaubt7() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 80));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt8() {
-        try {
-            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 79));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt9() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 80));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt10() {
-        try {
-            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 59));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt11() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 60));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt12() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 101));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt13() {
-        try {
-            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Geheim(), 101));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
-            fail();
-        }
-    }
-
-    @Test
-    public void zugriffErlaubt14() {
+    public void zugriffErlaubtGehobenGeheim() {
         try {
             assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Geheim(), 100));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
         }
-    }
 
-    @Test
-    public void zugriffErlaubt15() {
         try {
-            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 101));
-        } catch (IllegaleAnfrage illegaleAnfrage) {
+            kontrolle.zugriffErlaubt(new Gehoben(), new Geheim(), 101);
             fail();
+        } catch (IllegaleAnfrage ignored) {
         }
     }
 
     @Test
-    public void zugriffErlaubt16() {
+    public void zugriffErlaubtBevorzugtFrei() {
         try {
-            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Frei(), 101));
+            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 79));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 80));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 100));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            kontrolle.zugriffErlaubt(new Bevorzugt(), new Frei(), 101);
+            fail();
+        } catch (IllegaleAnfrage ignored) {
         }
     }
 
     @Test
-    public void zugriffErlaubt17() {
+    public void zugriffErlaubtBevorzugtVertraulich() {
         try {
-            assertFalse(kontrolle.zugriffErlaubt(new Gehoben(), new Vertraulich(), 101));
+            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 79));
         } catch (IllegaleAnfrage illegaleAnfrage) {
             fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 80));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 100));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            kontrolle.zugriffErlaubt(new Bevorzugt(), new Vertraulich(), 101);
+            fail();
+        } catch (IllegaleAnfrage ignored) {
+        }
+    }
+
+    @Test
+    public void zugriffErlaubtBevorzugtGeheim() {
+        try {
+            assertTrue(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 59));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 60));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            assertFalse(kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 100));
+        } catch (IllegaleAnfrage illegaleAnfrage) {
+            fail();
+        }
+
+        try {
+            kontrolle.zugriffErlaubt(new Bevorzugt(), new Geheim(), 101);
+            fail();
+        } catch (IllegaleAnfrage ignored) {
         }
     }
 }

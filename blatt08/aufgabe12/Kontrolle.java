@@ -29,7 +29,8 @@ public class Kontrolle {
 	public boolean zugriffErlaubt(Bevorzugt n, Frei d, int menge)
 			throws IllegaleAnfrage {
 		boolean ergebnis;
-		if (menge >= 100)
+//		if (menge >= 100)
+		if (menge > 100)
 			throw new IllegaleAnfrage();
 		if (menge < 80)
 			ergebnis = true;
@@ -53,6 +54,8 @@ public class Kontrolle {
 	public boolean zugriffErlaubt(Bevorzugt n, Geheim d, int menge)
 			throws IllegaleAnfrage {
 		boolean ergebnis;
+		if (menge > 100)
+			throw new IllegaleAnfrage();
 		if (menge < 60)
 			ergebnis = true;
 		else
